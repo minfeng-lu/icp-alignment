@@ -164,9 +164,11 @@ int main(){
 
 	typename pcl::PointCloud<PointT>::Ptr cloudFiltered (new pcl::PointCloud<PointT>);
 
-	cloudFiltered = scanCloud; // TODO: remove this line
 	//TODO: Create voxel filter for input scan and save to cloudFiltered
-	// ......
+	pcl::VoxelGrid<PointT> vg;
+	vg.setInputCloud(scalCloud);
+	vg.setLeafSize(1, 1, 1);
+	vg.filter( cloudFiltered);
 
 	PointCloudT::Ptr transformed_scan (new PointCloudT);
 	Tester tester;
